@@ -6,7 +6,7 @@ using PetApp.Core.Entity;
 
 namespace PetApp.Infrastructure.Static.Data
 {
-    class PetRepository: IPetRepository
+    public class PetRepository: IPetRepository
     {
         static int id = 1;
         private List<Pet> _pets = new List<Pet>();

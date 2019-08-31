@@ -3,6 +3,7 @@ using PetApp.Core.ApplicationService.Services;
 using PetApp.Core.DomaniService;
 using PetApp.Infrastructure.Static.Data;
 using PetApp.Core.Infrastructure.Static.Data;
+using PetApp.Infrastructure.Static.Data;
 using Microsoft.Extensions.DependencyInjection;
 namespace ConsoleAppOfPats
 {
@@ -11,7 +12,7 @@ namespace ConsoleAppOfPats
         static void Main(string[] args)
         {
             var serviceCollection = new ServiceCollection();
-            serviceCollection.AddScoped<IPetRepository, PetService>();
+            serviceCollection.AddScoped<IPetRepository, PetRepository>();
             serviceCollection.AddScoped<IPetService, PetService>();
             serviceCollection.AddScoped<IMirrorImage, MirrorImage>();
 
