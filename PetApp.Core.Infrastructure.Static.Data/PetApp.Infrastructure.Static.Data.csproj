@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PetApp.Core.Entity\PetApp.Core.Entity.csproj" />
+    <ProjectReference Include="..\PetApp.Core\PetApp.Core.csproj" />
+  </ItemGroup>
+
+</Project>
