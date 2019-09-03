@@ -12,7 +12,7 @@ namespace ConsoleAppOfPats
     {
         readonly IPetService _petService;
 
-        public Printer(IPetService petService)
+        public MirrorImage(IPetService petService)
         {
             _petService = petService;
             var petRepository = new PetRepository();
