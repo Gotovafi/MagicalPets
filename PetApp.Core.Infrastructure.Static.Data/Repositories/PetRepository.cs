@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using PetApp.Core.ApplicationService;
 using PetApp.Core.DomaniService;
 using PetApp.Core.Entity;
@@ -8,65 +9,9 @@ namespace PetApp.Infrastructure.Static.Data
 {
     public class PetRepository: IPetRepository
     {
-        static int id = 1;
-        private List<Pet> _pets = new List<Pet>();
-        readonly IPetService _petService;
-
-        public Pet Create(Pet pet)
+        public PetRepository()
         {
-            pet.Id = id++;
-            _pets.Add(pet);
-            return pet;
-        }
-
-        public IEnumerable<Pet> ReadAll()
-        {
-            return _pets;
-        }
-
-        
-        public Pet ReadyById(int id)
-        {
-            foreach (var pet in _pets)
-            {
-                if (pet.Id == id)
-                {
-                    return pet;
-                }
-
-            }
-            return null;
-        }
-
-        public Pet Updata(Pet petUpdata)
-        {
-            var PetFromDB = this.ReadyById(petUpdata.Id);
-            if (PetFromDB != null)
-            {
-                PetFromDB.Name = petUpdata.Name;
-                PetFromDB.Species = petUpdata.Species;
-                PetFromDB.SoldDate = petUpdata.SoldDate;
-                PetFromDB.Birthdate = petUpdata.Birthdate;
-                PetFromDB.Price = petUpdata.Price;
-                PetFromDB.PreviousOwner = petUpdata.PreviousOwner;
-                return PetFromDB;
-            }
-            return null;
-        }
-
-        public Pet Delete(int id)
-        {
-            var Pet = this.ReadyById(id);
-            if (Pet != null)
-            {
-                _pets.Remove(Pet);
-                return Pet;
-            }
-            return null;
-        }
-
-        public void InitData()
-        {
+            if (FakeDB.Pets.Count >= 1) return;
             var pet1 = new Pet()
             {
                 Name = "Malti",
@@ -78,7 +23,7 @@ namespace PetApp.Infrastructure.Static.Data
                 Price = "4999.99",
 
             };
-            _petService.CreateAPet(pet1);
+            FakeDB.Pets.Add(pet1);
 
             var pet2 = new Pet()
             {
@@ -91,7 +36,65 @@ namespace PetApp.Infrastructure.Static.Data
                 Price = "999999.99",
 
             };
-            _petService.CreateAPet(pet2);
+            FakeDB.Pets.Add(pet1);
+
         }
+        //static int id = 1;
+        //private List<Pet> _pets = new List<Pet>();
+        //readonly IPetService _petService;
+
+        public Pet Create(Pet pet)
+        {
+            pet.Id = FakeDB.Id++;
+            FakeDB.Pets.Add(pet);
+            return pet;
+        }
+
+        public IEnumerable<Pet> ReadAll()
+        {
+            return FakeDB.Pets;
+
+        }
+
+
+        public Pet ReadyById(int id)
+        {
+            return FakeDB.Pets.Select(c => new Pet()
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Species = c.Species,
+                Color = c.Color,
+                Birthdate = c.Birthdate,
+                Price = c.Price,
+                SoldDate = c.SoldDate,
+                PreviousOwner = c.PreviousOwner,
+            }).
+            FirstOrDefault(c => c.Id == id);
+        }
+            public Pet Updata(Pet petUpdata)
+        {
+            var PetFromDB = this.ReadyById(petUpdata.Id);
+                if (PetFromDB != null) return null;
+            
+                PetFromDB.Name = petUpdata.Name;
+                PetFromDB.Species = petUpdata.Species;
+                PetFromDB.SoldDate = petUpdata.SoldDate;
+                PetFromDB.Birthdate = petUpdata.Birthdate;
+                PetFromDB.Price = petUpdata.Price;
+                PetFromDB.PreviousOwner = petUpdata.PreviousOwner;
+                return PetFromDB;
+            
+        }
+
+        public Pet Delete(int id)
+        {
+            var petFound = ReadyById(id);
+            if (petFound == null) return null;
+
+            FakeDB.Pets.Remove(petFound);
+            return petFound;
+        }
+
     }
 }

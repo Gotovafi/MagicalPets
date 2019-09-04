@@ -15,10 +15,11 @@ namespace ConsoleAppOfPats
         public MirrorImage(IPetService petService)
         {
             _petService = petService;
-            var petRepository = new PetRepository();
-            {
-                petRepository.InitData();
-            }
+            //var petRepository = new PetRepository();
+            //{
+            //    petRepository.PetRepository;
+            //}
+            InitData();
         }
         public void StartUI()
         {
@@ -133,6 +134,34 @@ namespace ConsoleAppOfPats
             }
 
             return selection;
+        }
+        public void InitData()
+        {
+            var pet1 = new Pet()
+            {
+                Name = "Malti",
+                Species = "Naga",
+                Birthdate = "18-07-2000",
+                SoldDate = "07-09-2005",
+                Color = "Blue",
+                PreviousOwner = "Blilly Jack",
+                Price = "4999.99",
+
+            };
+            _petService.CreateAPet(pet1);
+
+            var pet2 = new Pet()
+            {
+                Name = "Nagival",
+                Species = "Dragon",
+                Birthdate = "01-01-1500",
+                SoldDate = "05-12-2008",
+                Color = "Black",
+                PreviousOwner = "Blilly Jack",
+                Price = "999999.99",
+
+            };
+            _petService.CreateAPet(pet2);
         }
     }
 }
