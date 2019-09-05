@@ -50,7 +50,7 @@ namespace ConsoleAppOfPats
                         var color = AskQuestion("Color: ");
                         var previousOwner = AskQuestion("PreviousOwner: ");
                         var price = AskQuestion("price: ");
-                        var pet = _petService.NewPat("name", "species", "birthdate", "soldDate", "color", "previousOwner", "price");
+                        var pet = _petService.NewPat("name", "species", DateTime.Parse("birthdate"), DateTime.Parse("soldDate"), "color", "previousOwner", Double.Parse("price"));
                         _petService.CreateAPet(pet);
                         break;
                     case 3:
@@ -73,11 +73,11 @@ namespace ConsoleAppOfPats
                             Id = idForEdit,
                             Name = newName,
                             Species = newSpecies,
-                            Birthdate = newBirthdate,
-                            SoldDate = newSoldDate,
+                            Birthdate = DateTime.Parse("newBirthdate"),
+                            SoldDate = DateTime.Parse("newSoldDate"),
                             Color = newColor,
                             PreviousOwner = newColor,
-                            Price = newPrice
+                            Price = double.Parse("newPrice"),
                         });
                         break;
                     default:
@@ -141,26 +141,51 @@ namespace ConsoleAppOfPats
             {
                 Name = "Malti",
                 Species = "Naga",
-                Birthdate = "18-07-2000",
-                SoldDate = "07-09-2005",
+                Birthdate = DateTime.Parse("05-01-2009 "),
+                SoldDate = DateTime.Parse("23-03-2015 "),
                 Color = "Blue",
                 PreviousOwner = "Blilly Jack",
-                Price = "4999.99",
+                Price = 4999.99,
 
             };
-            _petService.CreateAPet(pet1);
+            FakeDB.Pets.Add(pet1);
 
             var pet2 = new Pet()
             {
                 Name = "Nagival",
                 Species = "Dragon",
-                Birthdate = "01-01-1500",
-                SoldDate = "05-12-2008",
+                Birthdate = DateTime.Parse("15-01-1999 "),
+                SoldDate = DateTime.Parse("05-12-2009 "),
                 Color = "Black",
                 PreviousOwner = "Blilly Jack",
-                Price = "999999.99",
+                Price = 999999.99,
 
             };
+            FakeDB.Pets.Add(pet1);
+            //var pet1 = new Pet()
+            //{
+            //    Name = "Malti",
+            //    Species = "Naga",
+            //    Birthdate = "18-07-2000",
+            //    SoldDate = "07-09-2005",
+            //    Color = "Blue",
+            //    PreviousOwner = "Blilly Jack",
+            //    Price = "4999.99",
+
+            //};
+            //_petService.CreateAPet(pet1);
+
+            //var pet2 = new Pet()
+            //{
+            //    Name = "Nagival",
+            //    Species = "Dragon",
+            //    Birthdate = "01-01-1500",
+            //    SoldDate = "05-12-2008",
+            //    Color = "Black",
+            //    PreviousOwner = "Blilly Jack",
+            //    Price = "999999.99",
+
+            //};
             _petService.CreateAPet(pet2);
         }
     }

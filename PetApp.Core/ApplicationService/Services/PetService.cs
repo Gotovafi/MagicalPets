@@ -14,7 +14,7 @@ namespace PetApp.Core.ApplicationService.Services
             _petRepo = petService;
         }
         
-        public Pet NewPat(string name, string species, string birthDate, string soldDate, string color, string previousOwner, string price)
+        public Pet NewPat(string name, string species, DateTime birthDate, DateTime soldDate, string color, string previousOwner, double price)
         {
             var pet = new Pet
             {

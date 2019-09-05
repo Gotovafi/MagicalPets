@@ -1,6 +1,6 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace PetApp.Core.Entity
 {
@@ -12,15 +12,15 @@ namespace PetApp.Core.Entity
 
         public string Species { get; set; }
 
-        public string Birthdate { get; set; }
+        public DateTime Birthdate { get; set; }
 
-        public string SoldDate { get; set; }
+        public DateTime SoldDate { get; set; }
 
         public string Color { get; set; }
 
         public string PreviousOwner { get; set; }
 
-        public string Price { get; set; }
+        public double Price { get; set; }
         
     }
 }

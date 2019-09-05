@@ -16,11 +16,11 @@ namespace PetApp.Infrastructure.Static.Data
             {
                 Name = "Malti",
                 Species = "Naga",
-                Birthdate = "18-07-2000",
-                SoldDate = "07-09-2005",
+                Birthdate = DateTime.Parse("05-01-2009 "),
+                SoldDate = DateTime.Parse("23-03-2015 "),
                 Color = "Blue",
                 PreviousOwner = "Blilly Jack",
-                Price = "4999.99",
+                Price = 4999.99,
 
             };
             FakeDB.Pets.Add(pet1);
@@ -29,11 +29,11 @@ namespace PetApp.Infrastructure.Static.Data
             {
                 Name = "Nagival",
                 Species = "Dragon",
-                Birthdate = "01-01-1500",
-                SoldDate = "05-12-2008",
+                Birthdate = DateTime.Parse("15-01-1999 "),
+                SoldDate = DateTime.Parse("05-12-2009 "),
                 Color = "Black",
                 PreviousOwner = "Blilly Jack",
-                Price = "999999.99",
+                Price = 999999.99,
 
             };
             FakeDB.Pets.Add(pet1);
