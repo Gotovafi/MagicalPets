@@ -40,12 +40,12 @@ namespace ConsoleAppOfPats
                     case 2:
                         var name = AskQuestion("Name: ");
                         var species = AskQuestion("Species: ");
-                        var birthdate = AskQuestion("Birthdate: ");
-                        var soldDate = AskQuestion("SoldDate: ");
+                        var birthdate = AskQuestionAndMakeItToDataTime("Birthdate: ");
+                        var soldDate = AskQuestionAndMakeItToDataTime("SoldDate: ");
                         var color = AskQuestion("Color: ");
                         var previousOwner = AskQuestion("PreviousOwner: ");
-                        var price = AskQuestion("price: ");
-                        var pet = _petService.NewPat("name", "species", DateTime.Parse("birthdate"), DateTime.Parse("soldDate"), "color", "previousOwner", double.Parse("price"));
+                        var price = AskQuestionAndMakeItToDouble("price: ");
+                        var pet = _petService.NewPat("name", "species", birthdate, soldDate, "color", "previousOwner", price);
                         _petService.CreateAPet(pet);
                         break;
                     case 3:
@@ -58,11 +58,11 @@ namespace ConsoleAppOfPats
                         Console.WriteLine("Updating " + petToEdit.Name);
                         var newName = AskQuestion("Name: ");
                         var newSpecies = AskQuestion("Species: ");
-                        var newBirthdate = AskQuestion("Birthdate: ");
-                        var newSoldDate = AskQuestion("SoldDate: ");
+                        var newBirthdate = AskQuestionAndMakeItToDataTime("Birthdate: ");
+                        var newSoldDate = AskQuestionAndMakeItToDataTime("SoldDate: ");
                         var newColor = AskQuestion("Color: ");
                         var newPreviousOwner = AskQuestion("PreviousOwner: ");
-                        var newPrice = AskQuestion("Price: ");
+                        var newPrice = AskQuestionAndMakeItToDouble("Price: ");
                         _petService.UpdadtePet(new Pet()
                         {
                             Id = idForEdit,
@@ -99,10 +99,29 @@ namespace ConsoleAppOfPats
             return Console.ReadLine();
         }
 
-        DateTime AskQuestionV2(DateTime question)
+        DateTime AskQuestionAndMakeItToDataTime(string question)
         {
             Console.WriteLine(question);
-            return question;
+
+            String numberAsString = Console.ReadLine();
+            DateTime time;
+            DateTime.TryParse(numberAsString, out time);
+            //{
+            //    Console.WriteLine();
+            //}
+            return time;
+        }
+        double AskQuestionAndMakeItToDouble(string question)
+        {
+            Console.WriteLine(question);
+
+            String numberAsString = Console.ReadLine();
+            double pris;
+            double.TryParse(numberAsString, out pris);
+            //{
+            //    Console.WriteLine();
+            //}
+            return pris;
         }
 
         void ListPets(List<Pet> pets)
