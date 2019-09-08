@@ -15,11 +15,6 @@ namespace ConsoleAppOfPats
         public MirrorImage(IPetService petService)
         {
             _petService = petService;
-            //var petRepository = new PetRepository();
-            //{
-            //    petRepository.PetRepository;
-            //}
-            InitData();
         }
         public void StartUI()
         {
@@ -50,7 +45,7 @@ namespace ConsoleAppOfPats
                         var color = AskQuestion("Color: ");
                         var previousOwner = AskQuestion("PreviousOwner: ");
                         var price = AskQuestion("price: ");
-                        var pet = _petService.NewPat("name", "species", DateTime.Parse("birthdate"), DateTime.Parse("soldDate"), "color", "previousOwner", Double.Parse("price"));
+                        var pet = _petService.NewPat("name", "species", DateTime.Parse("birthdate"), DateTime.Parse("soldDate"), "color", "previousOwner", double.Parse("price"));
                         _petService.CreateAPet(pet);
                         break;
                     case 3:
@@ -73,7 +68,7 @@ namespace ConsoleAppOfPats
                             Id = idForEdit,
                             Name = newName,
                             Species = newSpecies,
-                            Birthdate = DateTime.Parse("newBirthdate"),
+                            Birthdate = DateTime.Parse("Birthdate"),
                             SoldDate = DateTime.Parse("newSoldDate"),
                             Color = newColor,
                             PreviousOwner = newColor,
@@ -102,6 +97,12 @@ namespace ConsoleAppOfPats
         {
             Console.WriteLine(question);
             return Console.ReadLine();
+        }
+
+        DateTime AskQuestionV2(DateTime question)
+        {
+            Console.WriteLine(question);
+            return question;
         }
 
         void ListPets(List<Pet> pets)
@@ -135,59 +136,7 @@ namespace ConsoleAppOfPats
 
             return selection;
         }
-        public void InitData()
-        {
-            var pet1 = new Pet()
-            {
-                Name = "Malti",
-                Species = "Naga",
-                Birthdate = DateTime.Parse("05-01-2009 "),
-                SoldDate = DateTime.Parse("23-03-2015 "),
-                Color = "Blue",
-                PreviousOwner = "Blilly Jack",
-                Price = 4999.99,
 
-            };
-            FakeDB.Pets.Add(pet1);
-
-            var pet2 = new Pet()
-            {
-                Name = "Nagival",
-                Species = "Dragon",
-                Birthdate = DateTime.Parse("15-01-1999 "),
-                SoldDate = DateTime.Parse("05-12-2009 "),
-                Color = "Black",
-                PreviousOwner = "Blilly Jack",
-                Price = 999999.99,
-
-            };
-            FakeDB.Pets.Add(pet1);
-            //var pet1 = new Pet()
-            //{
-            //    Name = "Malti",
-            //    Species = "Naga",
-            //    Birthdate = "18-07-2000",
-            //    SoldDate = "07-09-2005",
-            //    Color = "Blue",
-            //    PreviousOwner = "Blilly Jack",
-            //    Price = "4999.99",
-
-            //};
-            //_petService.CreateAPet(pet1);
-
-            //var pet2 = new Pet()
-            //{
-            //    Name = "Nagival",
-            //    Species = "Dragon",
-            //    Birthdate = "01-01-1500",
-            //    SoldDate = "05-12-2008",
-            //    Color = "Black",
-            //    PreviousOwner = "Blilly Jack",
-            //    Price = "999999.99",
-
-            //};
-            _petService.CreateAPet(pet2);
-        }
     }
 }
         

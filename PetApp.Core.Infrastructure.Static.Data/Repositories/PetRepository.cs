@@ -14,6 +14,7 @@ namespace PetApp.Infrastructure.Static.Data
             if (FakeDB.Pets.Count >= 1) return;
             var pet1 = new Pet()
             {
+                Id = 1,
                 Name = "Malti",
                 Species = "Naga",
                 Birthdate = DateTime.Parse("05-01-2009 "),
@@ -27,6 +28,7 @@ namespace PetApp.Infrastructure.Static.Data
 
             var pet2 = new Pet()
             {
+                Id = 2,
                 Name = "Nagival",
                 Species = "Dragon",
                 Birthdate = DateTime.Parse("15-01-1999 "),
@@ -36,7 +38,7 @@ namespace PetApp.Infrastructure.Static.Data
                 Price = 999999.99,
 
             };
-            FakeDB.Pets.Add(pet1);
+            FakeDB.Pets.Add(pet2);
 
         }
         //static int id = 1;
