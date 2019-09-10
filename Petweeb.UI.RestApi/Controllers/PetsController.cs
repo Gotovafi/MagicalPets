@@ -22,7 +22,7 @@ namespace Petweeb.UI.RestApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Owner>> Get()
         {
-            return _petService.GetAllePets();
+            return _petService.GetAllePets;
         }
 
         // GET api/values/5
