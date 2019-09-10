@@ -41,9 +41,6 @@ namespace PetApp.Infrastructure.Static.Data
             FakeDB.Pets.Add(pet2);
 
         }
-        //static int id = 1;
-        //private List<Pet> _pets = new List<Pet>();
-        //readonly IPetService _petService;
 
         public Pet Create(Pet pet)
         {

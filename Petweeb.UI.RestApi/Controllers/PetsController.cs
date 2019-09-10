@@ -1,5 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using PetApp.Core.ApplicationService;
+using PetApp.Core.DomaniService;
+using PetApp.Core.Entity;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -8,13 +11,18 @@ namespace Petweeb.UI.RestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class PetsController : ControllerBase
     {
+        private readonly IPetService _petService;
+        public PetsController(IPetService petService)
+        {
+            _petService = petService;
+        }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<Owner>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _petService.GetAllePets();
         }
 
         // GET api/values/5
