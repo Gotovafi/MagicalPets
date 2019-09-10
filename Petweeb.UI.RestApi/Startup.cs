@@ -14,6 +14,7 @@ using PetApp.Core.ApplicationService;
 using PetApp.Core.ApplicationService.Services;
 using PetApp.Core.DomaniService;
 using PetApp.Infrastructure.Static.Data;
+using PetApp.Infrastructure.Static.Data.Repositories;
 
 namespace Petweeb.UI.RestApi
 {
@@ -31,6 +32,9 @@ namespace Petweeb.UI.RestApi
         {
             services.AddScoped<IPetRepository, PetRepository>();
             services.AddScoped<IPetService, PetService>();
+
+            services.AddScoped<IOwnerRepository, OwnerRepository>();
+            services.AddScoped<IOwnerService, OwnerService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
