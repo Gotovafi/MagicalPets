@@ -9,6 +9,26 @@ namespace PetApp.Infrastructure.Static.Data.Repositories
 {
     public class OwnerRepository : IOwnerRepository
     {
+        public OwnerRepository()
+        {
+            if (FakeDB.Owners.Count >= 1) return;
+            var owner1 = new Owner()
+            {
+                FirstName = "Zaire",
+                LastName = "Copper",
+                Address = ""
+
+            };
+            FakeDB.Owners.Add(owner1);
+
+            var owner2 = new Owner()
+            {
+                FirstName = "Ruogang ",
+                LastName = "Thinwater",
+                Address = ""
+            };
+            FakeDB.Owners.Add(owner2);
+        }
         public Owner Create(Owner owner)
         {
             owner.Id = FakeDB.OwnerId++;

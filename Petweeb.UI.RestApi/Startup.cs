@@ -51,7 +51,7 @@ namespace Petweeb.UI.RestApi
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
