@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.Options;
 using PetApp.Core.ApplicationService;
 using PetApp.Core.ApplicationService.Services;
 using PetApp.Core.DomaniService;
+using PetApp.Infrastructure.SQL;
 using PetApp.Infrastructure.Static.Data;
 using PetApp.Infrastructure.Static.Data.Repositories;
 
@@ -36,6 +38,10 @@ namespace Petweeb.UI.RestApi
             services.AddScoped<IOwnerRepository, OwnerRepository>();
             services.AddScoped<IOwnerService, OwnerService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddDbContext<PetAppContext>(optionsAction: opt => opt.UseSqlite("Data Source=petApp.db")); 
+                )
+            /*connection*/:
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

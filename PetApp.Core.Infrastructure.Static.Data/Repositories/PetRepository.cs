@@ -55,7 +55,6 @@ namespace PetApp.Infrastructure.Static.Data
 
         }
 
-
         public Pet ReadyById(int id)
         {
             return FakeDB.Pets.Select(c => new Pet()

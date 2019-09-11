@@ -20,9 +20,9 @@ namespace Petweeb.UI.RestApi.Controllers
         }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<Owner>> Get()
+        public ActionResult<IEnumerable<Pet>> Get()
         {
-            return _petService.GetAllePets;
+            return _petService.GetAllePets();
         }
 
         // GET api/values/5

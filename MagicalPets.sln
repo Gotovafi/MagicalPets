@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppOfPats", "Console
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Petweeb.UI.RestApi", "Petweeb.UI.RestApi\Petweeb.UI.RestApi.csproj", "{0C54E646-6B18-46E6-A2AC-5CB774210CE6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetApp.Infrastructure.SQL", "PetApp.Infrastructure.SQL\PetApp.Infrastructure.SQL.csproj", "{4378742C-8433-4598-9E73-87D636B5CA59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{0C54E646-6B18-46E6-A2AC-5CB774210CE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C54E646-6B18-46E6-A2AC-5CB774210CE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C54E646-6B18-46E6-A2AC-5CB774210CE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4378742C-8433-4598-9E73-87D636B5CA59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4378742C-8433-4598-9E73-87D636B5CA59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4378742C-8433-4598-9E73-87D636B5CA59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4378742C-8433-4598-9E73-87D636B5CA59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +60,7 @@ Global
 		{3E2BD5D4-B132-497E-98A9-ACD849E56438} = {CEBB126F-F4F9-4847-B1EC-7EF1E6B9732C}
 		{9289195B-EF0F-467E-BECB-87B1300B9953} = {797E599C-FDFF-4541-B4F2-70966300112D}
 		{D1A826A9-DDD2-4C05-8181-D5F30463F912} = {60B5EF71-5A29-4FC9-9A4E-3A6F0691258E}
+		{4378742C-8433-4598-9E73-87D636B5CA59} = {797E599C-FDFF-4541-B4F2-70966300112D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E57E5BF8-C7DA-4254-B494-4DA85E31699B}
