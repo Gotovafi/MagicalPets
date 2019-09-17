@@ -32,6 +32,8 @@ namespace Petweeb.UI.RestApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<PetAppContext>(opt => opt.UseInMemoryDatabase("Db"));
+
             services.AddScoped<IPetRepository, PetRepository>();
             services.AddScoped<IPetService, PetService>();
 

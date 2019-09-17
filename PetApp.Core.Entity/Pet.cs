@@ -21,6 +21,7 @@ namespace PetApp.Core.Entity
         public string PreviousOwner { get; set; }
 
         public double Price { get; set; }
-        
+        public List<Owner> Owners { get; set; }
+
     }
 }

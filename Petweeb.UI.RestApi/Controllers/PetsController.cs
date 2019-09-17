@@ -29,25 +29,48 @@ namespace Petweeb.UI.RestApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "value";
+            if (id < 1) return BadRequest("id skal være søtrre end 0");
+            return _petService.FindPetById(id);
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<Pet> Post([FromBody] Pet pet)
         {
+            if (string.IsNullOrEmpty(pet.Name))
+            {
+                return BadRequest("har bruge for et name");
+            }
+            if (string.IsNullOrEmpty(pet.Species))
+            {
+                return BadRequest("");
+            }
+            return _petService.CreateAPet(pet);
+
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult<Pet> Put(int id, [FromBody] Pet pet)
         {
+            if (id < 1 || id != pet.Id)
+            {
+                return BadRequest("de 2 id må være det samme");
+            }
+            return Ok(_petService.UpdadtePet(pet));
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult<Pet> Delete(int id)
         {
+            var pet = _petService.DeletPet(id);
+            if (pet == null)
+            {
+                return StatusCode(404, "fandt ikke id på pet " + id);
+            }
+
+            return Ok($"pet with Id: {id} er slette");
         }
     }
 }

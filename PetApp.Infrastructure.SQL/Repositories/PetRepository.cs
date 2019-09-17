@@ -3,6 +3,7 @@ using PetApp.Core.DomaniService;
 using PetApp.Core.Entity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace PetApp.Infrastructure.SQL.Repositories
@@ -17,7 +18,11 @@ namespace PetApp.Infrastructure.SQL.Repositories
         }
         public Pet Create(Pet pet)
         {
-            _context.Attach(pet).State = EntityState.Added;
+            //_context.Attach(pet).State = EntityState.Added;
+            //_context.SaveChanges();
+            //return pet;
+
+            var own = _context.Pets.Add(pet).Entity;
             _context.SaveChanges();
             return pet;
         }
@@ -31,16 +36,12 @@ namespace PetApp.Infrastructure.SQL.Repositories
        
         public IEnumerable<Pet> ReadAll()
         {
-            //list.List = _context.Pet.ToList();
-            throw new NotImplementedException();
+            return _context.Pets;
         }
 
         public Pet ReadyById(int id)
         {
-            throw new NotImplementedException();
-            //return _ctx.Pet.
-            ////return _context.Pet.FirstOrDefault(p => p.Id = 4 = id);
-            ////throw new NotImplementedException();
+            return _context.Pets.FirstOrDefault(c => c.Id == id);
         }
 
         public Pet Updata(Pet petUpdata)

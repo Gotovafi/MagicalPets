@@ -9,9 +9,11 @@ namespace PetApp.Core.ApplicationService.Services
     public class PetService : IPetService
     {
         readonly IPetRepository _petRepo;
-        public PetService(IPetRepository petService)
+        readonly IOwnerRepository _ownerRepo;
+        public PetService(IPetRepository petRepository, IOwnerRepository ownerRepository)
         {
-            _petRepo = petService;
+            _petRepo = petRepository;
+            _ownerRepo = ownerRepository;
         }
         
         public Pet NewPat(string name, string species, DateTime birthDate, DateTime soldDate, string color, string previousOwner, double price)
@@ -37,7 +39,10 @@ namespace PetApp.Core.ApplicationService.Services
 
         public Pet FindPetById(int id)
         {
-            return _petRepo.ReadyById(id);
+            var pet = _petRepo.ReadyById(id);
+            pet.Owners = _ownerRepo.ReadAll().Where(owner => owner.Pets.Id == pet.Id).ToList();
+            return pet;
+            //return _petRepo.ReadyById(id);
         }
 
         public List<Pet> GetAllePets()
