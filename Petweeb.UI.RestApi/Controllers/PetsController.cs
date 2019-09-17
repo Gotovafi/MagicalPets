@@ -27,10 +27,10 @@ namespace Petweeb.UI.RestApi.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<Pet> Get(int id)
         {
             if (id < 1) return BadRequest("id skal være søtrre end 0");
-            return _petService.FindPetById(id);
+            return _petService.FindPetByIdIncludeOwner(id);
         }
 
         // POST api/values
@@ -48,7 +48,6 @@ namespace Petweeb.UI.RestApi.Controllers
             return _petService.CreateAPet(pet);
 
         }
-
         // PUT api/values/5
         [HttpPut("{id}")]
         public ActionResult<Pet> Put(int id, [FromBody] Pet pet)

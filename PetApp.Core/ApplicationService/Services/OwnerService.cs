@@ -9,10 +9,12 @@ namespace PetApp.Core.ApplicationService.Services
     public class OwnerService: IOwnerService
     {
         readonly IOwnerRepository _ownerRepo;
+        readonly IPetRepository _petRepo;
 
-        public OwnerService(IOwnerRepository ownerRepository)
+        public OwnerService(IOwnerRepository ownerRepository, IPetRepository petRepository)
         {
             _ownerRepo = ownerRepository;
+            _petRepo = petRepository;
         }
 
         public Owner CreateAOwner(Owner owner)

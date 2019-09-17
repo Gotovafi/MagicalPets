@@ -39,11 +39,20 @@ namespace PetApp.Core.ApplicationService.Services
 
         public Pet FindPetById(int id)
         {
-            var pet = _petRepo.ReadyById(id);
-            pet.Owners = _ownerRepo.ReadAll().Where(owner => owner.Pets.Id == pet.Id).ToList();
-            return pet;
-            //return _petRepo.ReadyById(id);
+            //var pet = _petRepo.ReadyById(id);
+            //pet.Owners = _ownerRepo.ReadAll().Where(owner => owner.Pets.Id == pet.Id).ToList();
+            //return pet;
+            return _petRepo.ReadyById(id);
         }
+        public Pet FindPetByIdIncludeOwner(int id)
+        {
+            var pet = _petRepo.ReadyById(id);
+            pet.Owners = _ownerRepo.ReadAll()
+                .Where(owner => owner.Pets.Id == pet.Id)
+                .ToList();
+            return pet;
+        }
+
 
         public List<Pet> GetAllePets()
         {

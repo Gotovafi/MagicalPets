@@ -3,7 +3,6 @@ using PetApp.Core.ApplicationService.Services;
 using PetApp.Core.DomaniService;
 using PetApp.Infrastructure.Static.Data;
 //using PetApp.Core.Infrastructure.Static.Data;
-using PetApp.Infrastructure.Static.Data;
 using Microsoft.Extensions.DependencyInjection;
 namespace ConsoleAppOfPats
 {
