@@ -7,9 +7,11 @@ using Microsoft.Extensions.DependencyInjection;
 using PetApp.Core.ApplicationService;
 using PetApp.Core.ApplicationService.Services;
 using PetApp.Core.DomaniService;
+using PetApp.Core.Entity;
 using PetApp.Infrastructure.SQL;
 using PetApp.Infrastructure.Static.Data;
 using PetApp.Infrastructure.Static.Data.Repositories;
+using System;
 
 namespace Petweeb.UI.RestApi
 {
@@ -25,7 +27,9 @@ namespace Petweeb.UI.RestApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<PetAppContext>(opt => opt.UseInMemoryDatabase("Db"));
+            //services.AddDbContext<PetAppContext>(opt => opt.UseInMemoryDatabase("Db"));
+
+            services.AddDbContext<PetAppContext>(opt => opt.UseSqlite("Data Source=MagicalPets.db"));
 
             services.AddScoped<IPetRepository, PetRepository>();
             services.AddScoped<IPetService, PetService>();
@@ -42,6 +46,22 @@ namespace Petweeb.UI.RestApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                using (var scope = app.ApplicationServices.CreateScope())
+                {
+                    var ctx = scope.ServiceProvider.GetService<PetAppContext>();
+                    ctx.Database.EnsureCreated();
+                    var pat1 = ctx.Pets.Add(new Pet()
+                    {
+                        Id = FakeDB.Id++,
+                        Name = "Malti",
+                        Species = "Naga",
+                        Color = "Blue",
+                        Birthdate = DateTime.Parse("05-01-2009 "),
+                        SoldDate = DateTime.Parse("23-03-2015 "),
+                        PreviousOwner = "Blilly Jack",
+                        Price = 4999.99,
+                    });
+                }
             }
             else
             {

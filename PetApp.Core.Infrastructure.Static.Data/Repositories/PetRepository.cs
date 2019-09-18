@@ -17,9 +17,9 @@ namespace PetApp.Infrastructure.Static.Data
                 Id = FakeDB.Id ++,
                 Name = "Malti",
                 Species = "Naga",
+                Color = "Blue",
                 Birthdate = DateTime.Parse("05-01-2009 "),
                 SoldDate = DateTime.Parse("23-03-2015 "),
-                Color = "Blue",
                 PreviousOwner = "Blilly Jack",
                 Price = 4999.99,
 
@@ -31,9 +31,9 @@ namespace PetApp.Infrastructure.Static.Data
                 Id = FakeDB.Id++,
                 Name = "Nagival",
                 Species = "Dragon",
+                Color = "Black",
                 Birthdate = DateTime.Parse("15-01-1999 "),
                 SoldDate = DateTime.Parse("05-12-2009 "),
-                Color = "Black",
                 PreviousOwner = "Blilly Jack",
                 Price = 999999.99,
 
