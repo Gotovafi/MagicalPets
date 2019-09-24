@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using PetApp.Core.DomaniService;
 using PetApp.Core.Entity;
 using System.Linq;
+using System.IO;
 
 namespace PetApp.Core.ApplicationService.Services
 {
@@ -33,7 +34,11 @@ namespace PetApp.Core.ApplicationService.Services
         }
 
         public Pet CreateAPet(Pet pet)
-        {
+        {1
+            if (pet.Owners == null || pet.Owners.Id <= 0)
+                throw new InvalidDataException("før du kan har et pet skal du har en owner");
+            if (_ownerRepo.ReadyById(pet.Owners.Id) == null)
+                throw new InvalidDataException("owner kun ikke findes");
             return _petRepo.Create(pet);
         }
 

@@ -17,10 +17,7 @@ namespace PetApp.Infrastructure.SQL.Repositories
         }
         public Owner Create(Owner owner)
         {
-            //_context.Attach(owner).State = EntityState.Added;
-            //_context.SaveChanges();
-            //return owner;
-
+            var changeTracker = _context.ChangeTracker.Entries<Pet>();
             var own = _context.Owners.Add(owner).Entity;
             _context.SaveChanges();
             return owner;

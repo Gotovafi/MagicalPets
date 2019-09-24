@@ -50,17 +50,7 @@ namespace Petweeb.UI.RestApi
                 {
                     var ctx = scope.ServiceProvider.GetService<PetAppContext>();
                     ctx.Database.EnsureCreated();
-                    var pat1 = ctx.Pets.Add(new Pet()
-                    {
-                        Id = FakeDB.Id++,
-                        Name = "Malti",
-                        Species = "Naga",
-                        Color = "Blue",
-                        Birthdate = DateTime.Parse("05-01-2009 "),
-                        SoldDate = DateTime.Parse("23-03-2015 "),
-                        PreviousOwner = "Blilly Jack",
-                        Price = 4999.99,
-                    });
+                    DBInitializer.DBInitializer(ctx);
                 }
             }
             else

@@ -18,10 +18,12 @@ namespace PetApp.Infrastructure.SQL.Repositories
         }
         public Pet Create(Pet pet)
         {
-            //_context.Attach(pet).State = EntityState.Added;
-            //_context.SaveChanges();
-            //return pet;
-
+            var changeTracker = _context.ChangeTracker.Entries<Owner>();
+            if (pet.Owners != null && _context.ChangeTracker.Entries<Owner>()
+                .FirstOrDefault(pe => pe.Entity.Id == pet.Owners.Id) ==null)
+            {
+                _context.Attach(pet.Owners);
+            }
             var own = _context.Pets.Add(pet).Entity;
             _context.SaveChanges();
             return pet;
@@ -46,7 +48,19 @@ namespace PetApp.Infrastructure.SQL.Repositories
 
         public Pet Updata(Pet petUpdata)
         {
-            throw new NotImplementedException();
+            var changeTracker = _context.ChangeTracker.Entries<Owner>();
+            if (petUpdata.Owners != null && _context.ChangeTracker.Entries<Owner>()
+                .FirstOrDefault(pe => pe.Entity.Id == petUpdata.Owners.Id) == null)
+            {
+                _context.Attach(petUpdata.Owners);
+            }
+            else
+            {
+                _context.Entry(petUpdata).Reference(o => o.Owners).IsModified = true;
+            }
+            var own = _context.Pets.Update(petUpdata).Entity;
+            _context.SaveChanges();
+            return petUpdata;
         }
     }
 }
