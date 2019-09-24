@@ -34,10 +34,10 @@ namespace PetApp.Core.ApplicationService.Services
         }
 
         public Pet CreateAPet(Pet pet)
-        {1
-            if (pet.Owners == null || pet.Owners.Id <= 0)
+        {
+            if (pet.Owner == null || pet.Owner.Id <= 0)
                 throw new InvalidDataException("før du kan har et pet skal du har en owner");
-            if (_ownerRepo.ReadyById(pet.Owners.Id) == null)
+            if (_ownerRepo.ReadyById(pet.Owner.Id) == null)
                 throw new InvalidDataException("owner kun ikke findes");
             return _petRepo.Create(pet);
         }
@@ -53,7 +53,7 @@ namespace PetApp.Core.ApplicationService.Services
         {
             var pet = _petRepo.ReadyById(id);
             pet.Owners = _ownerRepo.ReadAll()
-                .Where(owner => owner.Pets.Id == pet.Id)
+                .Where(owner => owner.Pet.Id == pet.Id)
                 .ToList();
             return pet;
         }

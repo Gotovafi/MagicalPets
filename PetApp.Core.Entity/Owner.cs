@@ -13,7 +13,7 @@ namespace PetApp.Core.Entity
         public string LastName { get; set; }
 
         public string Address { get; set; }
-
+        public Pet Pet { get; set; }
         public List<Pet> Pets { get; set; }
     }
 }

@@ -8,6 +8,7 @@ namespace PetApp.Core.DomaniService
     public interface IPetRepository
     {
         Pet Create(Pet pet);
+        Pet Id(int id);
         Pet ReadyById(int id);
         IEnumerable<Pet> ReadAll();
         Pet Updata(Pet petUpdata);

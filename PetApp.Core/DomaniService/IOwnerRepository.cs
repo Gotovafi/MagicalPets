@@ -8,6 +8,7 @@ namespace PetApp.Core.DomaniService
     public interface IOwnerRepository
     {
         Owner Create(Owner owner);
+        Owner Id(int id);
         Owner ReadyById(int id);
         IEnumerable<Owner> ReadAll();
         Owner Update(Owner ownerUpdate);

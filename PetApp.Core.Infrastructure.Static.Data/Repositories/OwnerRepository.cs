@@ -45,6 +45,11 @@ namespace PetApp.Infrastructure.Static.Data.Repositories
             return ownerFound;
         }
 
+        public Owner Id(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Owner> ReadAll()
         {
             return FakeDB.Owners;

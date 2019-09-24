@@ -20,7 +20,7 @@ namespace PetApp.Infrastructure.SQL.Repositories
         {
             var changeTracker = _context.ChangeTracker.Entries<Owner>();
             if (pet.Owners != null && _context.ChangeTracker.Entries<Owner>()
-                .FirstOrDefault(pe => pe.Entity.Id == pet.Owners.Id) ==null)
+                .FirstOrDefault(pe => pe.Entity.Id == pet.Owner.Id) ==null)
             {
                 _context.Attach(pet.Owners);
             }
@@ -34,8 +34,13 @@ namespace PetApp.Infrastructure.SQL.Repositories
             var removed = _context.Remove(new Pet { Id = id }).Entity;
             _context.SaveChanges();
             return removed;
-        } 
-       
+        }
+
+        public Pet Id(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Pet> ReadAll()
         {
             return _context.Pets;
@@ -50,7 +55,7 @@ namespace PetApp.Infrastructure.SQL.Repositories
         {
             var changeTracker = _context.ChangeTracker.Entries<Owner>();
             if (petUpdata.Owners != null && _context.ChangeTracker.Entries<Owner>()
-                .FirstOrDefault(pe => pe.Entity.Id == petUpdata.Owners.Id) == null)
+                .FirstOrDefault(pe => pe.Entity.Id == petUpdata.Owner.Id) == null)
             {
                 _context.Attach(petUpdata.Owners);
             }

@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PetApp.Core.Entity\PetApp.Core.Entity.csproj" />
+    <ProjectReference Include="..\PetApp.Core.Infrastructure.Static.Data\PetApp.Infrastructure.Static.Data.csproj" />
     <ProjectReference Include="..\PetApp.Core\PetApp.Core.csproj" />
   </ItemGroup>
 

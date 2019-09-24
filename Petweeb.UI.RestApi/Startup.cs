@@ -50,7 +50,7 @@ namespace Petweeb.UI.RestApi
                 {
                     var ctx = scope.ServiceProvider.GetService<PetAppContext>();
                     ctx.Database.EnsureCreated();
-                    DBInitializer.DBInitializer(ctx);
+                    DBInitializer.SeedDB(ctx);
                 }
             }
             else

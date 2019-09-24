@@ -30,6 +30,11 @@ namespace PetApp.Infrastructure.SQL.Repositories
             return removed;
         }
 
+        public Owner Id(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Owner> ReadAll()
         {
             return _context.Owners;
