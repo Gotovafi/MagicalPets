@@ -10,7 +10,9 @@ namespace PetApp.Core.ApplicationService
         Owner CreateAOwner(Owner owner);
         Owner FindOwnerById(int id);
         List<Owner> GetAlleOwners();
+        List<Owner> GetFileteredOwners(Filter filter);
         Owner UpdadteOwner(Owner updadteOwner);
         Owner DeletOwner(int id);
+        
     }
 }

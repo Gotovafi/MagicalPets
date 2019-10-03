@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using PetApp.Core.DomaniService;
 using PetApp.Core.Entity;
 using System.Linq;
+using System.IO;
 
 namespace PetApp.Core.ApplicationService.Services
 {
@@ -35,6 +36,19 @@ namespace PetApp.Core.ApplicationService.Services
         public List<Owner> GetAlleOwners()
         {
             return _ownerRepo.ReadAll().ToList();
+        }
+
+        public List<Owner> GetFileteredOwners(Filter filter)
+        {
+            if (filter.CurrentPage < 0 || filter.ItemsPrPage < 0)
+            {
+                throw new InvalidDataException("CurrentPage og Items skal være 0 eller mere");
+            }
+            if ((filter.CurrentPage - 1 * filter.ItemsPrPage) >= _petRepo.Count())
+            {
+                throw new InvalidDataException("index out bounds, Currentpage er for høje");
+            }
+            return _ownerRepo.ReadAll(filter).ToList();
         }
 
         public Owner NewOwner(string firstName, string lastName, string address)

@@ -16,6 +16,12 @@ namespace PetApp.Infrastructure.SQL.Repositories
         {
             _context = context;
         }
+
+        public int Count()
+        {
+            return _context.Pets.Count();
+        }
+
         public Pet Create(Pet pet)
         {
             var changeTracker = _context.ChangeTracker.Entries<Owner>();
@@ -41,9 +47,15 @@ namespace PetApp.Infrastructure.SQL.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Pet> ReadAll()
+        public IEnumerable<Pet> ReadAll(Filter filter)
         {
-            return _context.Pets;
+            if (filter == null)
+            { 
+                return _context.Pets;
+            }
+            return _context.Pets
+                .Skip((filter.CurrentPage - 1) * filter.ItemsPrPage)
+                .Take(filter.ItemsPrPage);
         }
 
         public Pet ReadyById(int id)
@@ -53,18 +65,10 @@ namespace PetApp.Infrastructure.SQL.Repositories
 
         public Pet Updata(Pet petUpdata)
         {
-            var changeTracker = _context.ChangeTracker.Entries<Owner>();
-            if (petUpdata.Owners != null && _context.ChangeTracker.Entries<Owner>()
-                .FirstOrDefault(pe => pe.Entity.Id == petUpdata.Owner.Id) == null)
-            {
-                _context.Attach(petUpdata.Owners);
-            }
-            else
-            {
-                _context.Entry(petUpdata).Reference(o => o.Owners).IsModified = true;
-            }
-            var own = _context.Pets.Update(petUpdata).Entity;
+            _context.Attach(petUpdata).State = EntityState.Modified;
+            _context.Entry(petUpdata).Reference(o => o.Owners).IsModified = true;
             _context.SaveChanges();
+
             return petUpdata;
         }
     }

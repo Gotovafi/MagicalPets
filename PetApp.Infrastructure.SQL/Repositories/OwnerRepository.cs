@@ -35,19 +35,29 @@ namespace PetApp.Infrastructure.SQL.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Owner> ReadAll()
+        public IEnumerable<Owner> ReadAll(Filter filter)
         {
-            return _context.Owners;
-        }
+            if (filter == null)
+            { 
+                return _context.Pets;
+            }
+            return _context.Pets
+                .Skip((filter.CurrentPage - 1) * filter.ItemsPrPage)
+                .Take(filter.ItemsPrPage);
+}
 
-        public Owner ReadyById(int id)
+public Owner ReadyById(int id)
         {
             return _context.Owners.FirstOrDefault(c => c.Id == id);
         }
 
         public Owner Update(Owner ownerUpdate)
         {
-            throw new NotImplementedException();
+            _context.Attach(ownerUpdate).State = EntityState.Modified;
+            _context.Entry(ownerUpdate).Reference(o => o.Pets).IsModified = true;
+            _context.SaveChanges();
+
+            return ownerUpdate;
         }
     }
 }

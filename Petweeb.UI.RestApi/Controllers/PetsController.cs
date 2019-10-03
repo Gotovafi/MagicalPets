@@ -20,9 +20,16 @@ namespace Petweeb.UI.RestApi.Controllers
         }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<Pet>> Get()
+        public ActionResult<IEnumerable<Pet>> Get([FromQuery] Filter filter)
         {
-            return _petService.GetAllePets();
+            try
+            {
+                return Ok(_petService.GetFileteredPets(filter));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // GET api/values/5

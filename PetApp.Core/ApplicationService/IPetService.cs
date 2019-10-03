@@ -11,7 +11,9 @@ namespace PetApp.Core.ApplicationService
         Pet FindPetById(int id);
         Pet FindPetByIdIncludeOwner(int id);
         List<Pet> GetAllePets();
+        List<Pet> GetFileteredPets(Filter filter);
         Pet UpdadtePet(Pet updadtePet);
         Pet DeletPet(int id);
+        
     }
 }

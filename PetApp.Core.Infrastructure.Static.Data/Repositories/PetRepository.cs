@@ -4,11 +4,13 @@ using System.Linq;
 using PetApp.Core.ApplicationService;
 using PetApp.Core.DomaniService;
 using PetApp.Core.Entity;
+using PetApp.Infrastructure.SQL;
 
 namespace PetApp.Infrastructure.Static.Data
 {
     public class PetRepository: IPetRepository
     {
+        readonly PetAppContext _petAppContext;
         public PetRepository()
         {
             if (FakeDB.Pets.Count >= 1) return;
@@ -85,6 +87,22 @@ namespace PetApp.Infrastructure.Static.Data
             
         }
 
+        
+
+        public Pet Id(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Pet> ReadAll(Filter filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Count()
+        {
+            return _petAppContext.Pets.Count();
+        }
         public Pet Delete(int id)
         {
             var petFound = ReadyById(id);
@@ -93,6 +111,5 @@ namespace PetApp.Infrastructure.Static.Data
             FakeDB.Pets.Remove(petFound);
             return petFound;
         }
-
     }
 }

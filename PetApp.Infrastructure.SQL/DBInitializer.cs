@@ -14,7 +14,6 @@ namespace PetApp.Infrastructure.Static.Data
             ctx.Database.EnsureCreated();
             var pat1 = ctx.Pets.Add(new Pet()
             {
-                
                 Name = "Malti",
                 Species = "Naga",
                 Color = "Blue",

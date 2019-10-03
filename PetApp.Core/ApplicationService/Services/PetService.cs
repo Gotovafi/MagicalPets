@@ -63,7 +63,18 @@ namespace PetApp.Core.ApplicationService.Services
         {
             return _petRepo.ReadAll().ToList();
         }
-
+        public List<Pet> GetFileteredPets(Filter filter)
+        {
+            if (filter.CurrentPage < 0 || filter.ItemsPrPage < 0)
+            {
+                throw new InvalidDataException("CurrentPage og Items skal være 0 eller mere");
+            }
+            if ((filter.CurrentPage -1 * filter.ItemsPrPage) >= _petRepo.Count())
+            {
+                throw new InvalidDataException("index out bounds, Currentpage er for høje");
+            }
+            return _petRepo.ReadAll(filter).ToList();
+        }
         public Pet UpdadtePet(Pet updadtePet)
         {
             var pet = FindPetById(updadtePet.Id);
@@ -81,5 +92,7 @@ namespace PetApp.Core.ApplicationService.Services
         {
             return _petRepo.Delete(id);
         }
+
+        
     }
 }

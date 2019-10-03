@@ -16,9 +16,16 @@ namespace Petweeb.UI.RestApi.Controllers
             _ownerService = ownerService;
         }
         [HttpGet]
-        public ActionResult<IEnumerable<Owner>> Get()
+        public ActionResult<IEnumerable<Owner>> Get([FromQuery] Filter filter)
         {
-            return _ownerService.GetAlleOwners();
+            try
+            {
+                return Ok(_ownerService.GetFileteredOwners(filter));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
 
